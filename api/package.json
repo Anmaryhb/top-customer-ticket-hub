@@ -1,0 +1,1 @@
+{"name":"ticket-hub-api","version":"1.0.0","main":"src/functions/*.js","dependencies":{"@azure/cosmos":"^4.3.1","@azure/functions":"^4.7.2"}}
