@@ -1,4 +1,3 @@
-}
 
 .history {
   border-left: 3px solid #dbe7f2;
@@ -97,6 +96,28 @@ td {
   background: #f9fafb;
 }
 
+/* Expert Meeting */
+.ExpertMeeting {
+  background: #ede9fe;
+  color: #5b21b6;
+  font-weight: 700;
+}
+
+/* KPI morado de Expert Meetings */
+.ExpertMeetingCard {
+  border-left: 6px solid #7c3aed;
+  background: #f5f3ff;
+}
+
+/* Tabla adaptable */
+#list {
+  overflow-x: auto;
+}
+
+#list table button {
+  white-space: nowrap;
+}
+
 @media (max-width: 700px) {
   .grid,
   .stats {
@@ -116,3 +137,4 @@ td {
     flex-direction: column;
   }
 }
+
