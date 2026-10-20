@@ -1,167 +1,379 @@
-
 <!doctype html>
 <html lang="es">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <title>Top Customer Ticket Hub</title>
+  <meta
+    name="description"
+    content="Portal interno para creación, seguimiento y administración de solicitudes Top Customer."
+  >
+
   <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-  <main class="wrap">
 
-    <!-- ENCABEZADO -->
-    <header>
-      <div>
-        <h1>Top Customer Ticket Hub</h1>
-        <p id="who" class="muted">Cargando identidad...</p>
-      </div>
+  <!-- =====================================================
+       LOGIN
+       ===================================================== -->
 
-      <div class="header-actions">
-        <button
-          id="notificationButton"
-          class="btn secondary"
-          type="button"
-          title="Notificaciones"
-          aria-label="Abrir notificaciones"
-          aria-expanded="false"
-        >
-          🔔
-          <span id="notificationCount"
-                class="notification-count hidden">0</span>
-        </button>
+  <section id="loginView" class="login-shell hidden">
+    <div class="login-card">
 
-        <a id="admin"
-           class="btn secondary hidden"
-           href="admin.html">
-          Administrador
-        </a>
+      <div class="brand-mark">TC</div>
 
-        <a class="btn secondary" href="/.auth/logout">
-          Salir
-        </a>
-      </div>
-    </header>
+      <p class="eyebrow">TOP CUSTOMER</p>
 
-    <!-- PANEL DE NOTIFICACIONES -->
-    <section id="notificationPanel"
-             class="card hidden"
-             aria-label="Panel de notificaciones">
+      <h1>Ticket Hub</h1>
 
-      <div class="notification-header">
-        <h2>Notificaciones</h2>
+      <p>
+        Crea solicitudes, consulta actualizaciones y realiza
+        seguimiento de tus tickets desde un solo lugar.
+      </p>
 
-        <button id="markAllRead"
-                class="btn secondary"
-                type="button">
-          Marcar todas como leídas
-        </button>
-      </div>
+      <a
+        class="button primary wide"
+        href="/.auth/login/aad?post_login_redirect_uri=/"
+      >
+        Ingresar con Microsoft
+      </a>
 
-      <div id="notificationList">
-        <p class="muted">No hay notificaciones para mostrar.</p>
-      </div>
-    </section>
+      <small>
+        Acceso mediante cuenta Microsoft autorizada.
+      </small>
 
-    <!-- NUEVA SOLICITUD -->
-    <section class="card">
-      <h2>Nueva solicitud</h2>
+    </div>
+  </section>
 
-      <form id="form" class="grid">
 
-        <label>
-          Nombre completo
-          <input name="requesterName" required>
-        </label>
+  <!-- =====================================================
+       APLICACIÓN
+       ===================================================== -->
 
-        <label>
-          Microsoft V- email
-          <input id="email" type="email" disabled>
-        </label>
+  <div id="appView" class="app-shell hidden">
 
-        <label>
-          Account name
-          <input name="accountName" required>
-        </label>
+    <!-- HEADER -->
 
-        <label>
-          Account ID
-          <input name="accountId" required>
-        </label>
+    <header class="topbar">
 
-        <label>
-          TPID
-          <input name="tpid" required>
-        </label>
+      <a class="brand" href="/" aria-label="Top Customer Ticket Hub">
 
-        <label>
-          ¿Mencionaron correo?
-          <select name="emailMentioned" required>
-            <option value="No">No</option>
-            <option value="Yes">Yes</option>
-          </select>
-        </label>
+        <span class="brand-mark small">
+          TC
+        </span>
 
-        <label>
-          ¿Requiere reunión de Teams con un experto?
-          <select name="expertMeetingRequired" required>
-            <option value="No">No</option>
-            <option value="Yes">Yes</option>
-          </select>
-        </label>
+        <span>
+          <strong>Top Customer</strong>
+          <small>Ticket Hub</small>
+        </span>
 
-        <label>
-          Categoría
-          <select name="category" required>
-            <option value="">Seleccionar</option>
-            <option>MSX / Opportunity</option>
-            <option>Azure technical</option>
-            <option>Billing / Credits</option>
-            <option>Support / Get Help</option>
-            <option>Capacity / Quota</option>
-            <option>Migration</option>
-            <option>Security / Compliance</option>
-            <option>Partner / Assessment</option>
-            <option>Access / Permissions</option>
-            <option>Reporting / Power BI</option>
-            <option>Process question</option>
-            <option>Other</option>
-          </select>
-        </label>
+      </a>
 
-        <label class="full">
-          Requerimiento
-          <textarea name="requirement" required></textarea>
-        </label>
 
-        <label class="full">
-          Información general
-          <textarea name="generalInfo" required></textarea>
-        </label>
+      <div class="top-actions">
 
-        <div>
-          <button class="btn" type="submit">
-            Crear ticket
-          </button>
+        <div class="user-block">
+          <strong id="userName">Usuario</strong>
+          <small id="userRole">Cargando...</small>
         </div>
 
-      </form>
 
-      <div id="msg" role="status" aria-live="polite"></div>
-    </section>
+        <button
+          id="notificationsButton"
+          class="icon-button"
+          type="button"
+          aria-label="Abrir notificaciones"
+          title="Notificaciones"
+        >
+          🔔
 
-    <!-- MIS SOLICITUDES -->
-    <section class="card">
-      <h2>Mis solicitudes</h2>
-      <div id="list"></div>
-    </section>
+          <span
+            id="notificationBadge"
+            class="badge hidden"
+          >
+            0
+          </span>
+        </button>
 
-    <!-- DETALLE DEL TICKET -->
-    <section id="detail" class="card hidden"></section>
 
-  </main>
+        <a
+          class="button ghost compact"
+          href="/.auth/logout"
+        >
+          Salir
+        </a>
 
-  <script src="app.js"></script>
-</body>
-</html>
+      </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         CONTENIDO PRINCIPAL
+         ===================================================== -->
+
+    <main class="page">
+
+      <!-- HERO -->
+
+      <section class="hero">
+
+        <div>
+
+          <p class="eyebrow">
+            TOP CUSTOMER SUPPORT
+          </p>
+
+          <h1 id="welcomeTitle">
+            Ticket Hub
+          </h1>
+
+          <p id="welcomeCopy">
+            Crea y consulta tus solicitudes.
+          </p>
+
+        </div>
+
+
+        <button
+          id="newTicketButton"
+          class="button"
+          type="button"
+        >
+          + Nueva solicitud
+        </button>
+
+      </section>
+
+
+      <!-- ===================================================
+           MÉTRICAS
+           =================================================== -->
+
+      <section
+        class="metric-grid"
+        aria-label="Resumen de tickets"
+      >
+
+        <article class="metric">
+          <span>Total</span>
+          <strong id="metricTotal">0</strong>
+        </article>
+
+        <article class="metric">
+          <span>Pendientes</span>
+          <strong id="metricPending">0</strong>
+        </article>
+
+        <article class="metric">
+          <span>En progreso</span>
+          <strong id="metricProgress">0</strong>
+        </article>
+
+        <article class="metric">
+          <span>Completados</span>
+          <strong id="metricComplete">0</strong>
+        </article>
+
+      </section>
+
+
+      <!-- ===================================================
+           MIS SOLICITUDES
+           =================================================== -->
+
+      <section class="panel">
+
+        <div class="panel-heading">
+
+          <div>
+            <h2>Solicitudes</h2>
+            <p id="ticketCount">
+              0 resultados
+            </p>
+          </div>
+
+
+          <button
+            id="refreshButton"
+            class="button ghost compact"
+            type="button"
+          >
+            Actualizar
+          </button>
+
+        </div>
+
+
+        <!-- FILTROS -->
+
+        <div class="filters">
+
+          <label class="search-field">
+
+            Buscar
+
+            <input
+              id="searchInput"
+              type="search"
+              autocomplete="off"
+              placeholder="Ticket, cliente, TPID, creador..."
+            >
+
+          </label>
+
+
+          <label>
+
+            Estado
+
+            <select id="statusFilter">
+              <option value="">Todos</option>
+              <option value="Pending">Pendiente</option>
+              <option value="Under Review">En revisión</option>
+              <option value="Escalated">Escalado</option>
+              <option value="Complete">Completado</option>
+              <option value="Cancelled">Cancelado</option>
+            </select>
+
+          </label>
+
+
+          <label>
+
+            Prioridad
+
+            <select id="priorityFilter">
+              <option value="">Todas</option>
+              <option value="Low">Baja</option>
+              <option value="Medium">Media</option>
+              <option value="High">Alta</option>
+              <option value="Critical">Crítica</option>
+            </select>
+
+          </label>
+
+        </div>
+
+
+        <!-- ESTADO DE CARGA -->
+
+        <div
+          id="loadingState"
+          class="empty-state hidden"
+        >
+          <strong>Cargando solicitudes...</strong>
+        </div>
+
+
+        <!-- SIN RESULTADOS -->
+
+        <div
+          id="emptyState"
+          class="empty-state hidden"
+        >
+          <strong>No encontramos solicitudes.</strong>
+
+          <span>
+            Crea una nueva solicitud o cambia los filtros.
+          </span>
+        </div>
+
+
+        <!-- LISTA -->
+
+        <div
+          id="ticketList"
+          class="ticket-list"
+        ></div>
+
+      </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         MODAL CREAR TICKET
+         ===================================================== -->
+
+    <dialog
+      id="createDialog"
+      class="modal"
+    >
+
+      <div class="modal-heading">
+
+        <div>
+
+          <p class="eyebrow">
+            TOP CUSTOMER
+          </p>
+
+          <h2>Nueva solicitud</h2>
+
+          <p>
+            Completa la información necesaria para crear el ticket.
+          </p>
+
+        </div>
+
+
+        <button
+          class="icon-button close-dialog"
+          type="button"
+          aria-label="Cerrar"
+        >
+          ✕
+        </button>
+
+      </div>
+
+
+      <form id="createForm">
+
+        <div class="form-grid">
+
+          <label class="full">
+
+            <span>Título</span>
+
+            <input
+              name="title"
+              maxlength="120"
+              required
+              placeholder="Resumen corto de la solicitud"
+            >
+
+          </label>
+
+
+          <label>
+
+            <span>Cliente / Account name</span>
+
+            <input
+              name="customerName"
+              maxlength="120"
+              required
+              placeholder="Nombre del cliente"
+            >
+
+          </label>
+
+
+          <label>
+
+            <span>TPID</span>
+
+            <input
+              name="customerTpid"
+              maxlength="40"
+              placeholder="TPID si está disponible"
+            >
+
+          </label>
+
+
+       
