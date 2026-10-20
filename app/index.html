@@ -1,1 +1,167 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Top Customer Ticket Hub</title><link rel="stylesheet" href="styles.css"></head><body><main class="wrap"><header><div><h1>Top Customer Ticket Hub</h1><p id="who" class="muted">Cargando identidad...</p></div><div><a id="admin" class="btn secondary hidden" href="admin.html">Administrador</a> <a class="btn secondary" href="/.auth/logout">Salir</a></div></header><section class="card"><h2>Nueva solicitud</h2><form id="form" class="grid"><label>Nombre completo<input name="requesterName" required></label><label>Microsoft V- email<input id="email" disabled></label><label>Account name<input name="accountName" required></label><label>Account ID<input name="accountId" required></label><label>TPID<input name="tpid" required></label><label>¿Mencionaron correo?<select name="emailMentioned"><option>No</option><option>Yes</option></select></label><label>Categoría<select name="category" required><option value="">Seleccionar</option><option>MSX / Opportunity</option><option>Azure technical</option><option>Billing / Credits</option><option>Support / Get Help</option><option>Capacity / Quota</option><option>Migration</option><option>Security / Compliance</option><option>Partner / Assessment</option><option>Access / Permissions</option><option>Reporting / Power BI</option><option>Process question</option><option>Other</option></select></label><label class="full">Requerimiento<textarea name="requirement" required></textarea></label><label class="full">Información general<textarea name="generalInfo" required></textarea></label><div><button class="btn">Crear ticket</button></div></form><div id="msg"></div></section><section class="card"><h2>Mis solicitudes</h2><div id="list"></div></section><section id="detail" class="card hidden"></section></main><script src="app.js"></script></body></html>
+
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Top Customer Ticket Hub</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <main class="wrap">
+
+    <!-- ENCABEZADO -->
+    <header>
+      <div>
+        <h1>Top Customer Ticket Hub</h1>
+        <p id="who" class="muted">Cargando identidad...</p>
+      </div>
+
+      <div class="header-actions">
+        <button
+          id="notificationButton"
+          class="btn secondary"
+          type="button"
+          title="Notificaciones"
+          aria-label="Abrir notificaciones"
+          aria-expanded="false"
+        >
+          🔔
+          <span id="notificationCount"
+                class="notification-count hidden">0</span>
+        </button>
+
+        <a id="admin"
+           class="btn secondary hidden"
+           href="admin.html">
+          Administrador
+        </a>
+
+        <a class="btn secondary" href="/.auth/logout">
+          Salir
+        </a>
+      </div>
+    </header>
+
+    <!-- PANEL DE NOTIFICACIONES -->
+    <section id="notificationPanel"
+             class="card hidden"
+             aria-label="Panel de notificaciones">
+
+      <div class="notification-header">
+        <h2>Notificaciones</h2>
+
+        <button id="markAllRead"
+                class="btn secondary"
+                type="button">
+          Marcar todas como leídas
+        </button>
+      </div>
+
+      <div id="notificationList">
+        <p class="muted">No hay notificaciones para mostrar.</p>
+      </div>
+    </section>
+
+    <!-- NUEVA SOLICITUD -->
+    <section class="card">
+      <h2>Nueva solicitud</h2>
+
+      <form id="form" class="grid">
+
+        <label>
+          Nombre completo
+          <input name="requesterName" required>
+        </label>
+
+        <label>
+          Microsoft V- email
+          <input id="email" type="email" disabled>
+        </label>
+
+        <label>
+          Account name
+          <input name="accountName" required>
+        </label>
+
+        <label>
+          Account ID
+          <input name="accountId" required>
+        </label>
+
+        <label>
+          TPID
+          <input name="tpid" required>
+        </label>
+
+        <label>
+          ¿Mencionaron correo?
+          <select name="emailMentioned" required>
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+          </select>
+        </label>
+
+        <label>
+          ¿Requiere reunión de Teams con un experto?
+          <select name="expertMeetingRequired" required>
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+          </select>
+        </label>
+
+        <label>
+          Categoría
+          <select name="category" required>
+            <option value="">Seleccionar</option>
+            <option>MSX / Opportunity</option>
+            <option>Azure technical</option>
+            <option>Billing / Credits</option>
+            <option>Support / Get Help</option>
+            <option>Capacity / Quota</option>
+            <option>Migration</option>
+            <option>Security / Compliance</option>
+            <option>Partner / Assessment</option>
+            <option>Access / Permissions</option>
+            <option>Reporting / Power BI</option>
+            <option>Process question</option>
+            <option>Other</option>
+          </select>
+        </label>
+
+        <label class="full">
+          Requerimiento
+          <textarea name="requirement" required></textarea>
+        </label>
+
+        <label class="full">
+          Información general
+          <textarea name="generalInfo" required></textarea>
+        </label>
+
+        <div>
+          <button class="btn" type="submit">
+            Crear ticket
+          </button>
+        </div>
+
+      </form>
+
+      <div id="msg" role="status" aria-live="polite"></div>
+    </section>
+
+    <!-- MIS SOLICITUDES -->
+    <section class="card">
+      <h2>Mis solicitudes</h2>
+      <div id="list"></div>
+    </section>
+
+    <!-- DETALLE DEL TICKET -->
+    <section id="detail" class="card hidden"></section>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
