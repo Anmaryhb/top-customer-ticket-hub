@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Top Customer Ticket Hub</title>
+
   <meta
     name="description"
     content="Portal interno para creación, seguimiento y administración de solicitudes Top Customer."
@@ -17,9 +18,10 @@
 
   <!-- =====================================================
        LOGIN
+       Visible por defecto para evitar pantalla en blanco
        ===================================================== -->
 
-  <section id="loginView" class="login-shell hidden">
+  <section id="loginView" class="login-shell">
     <div class="login-card">
 
       <div class="brand-mark">TC</div>
@@ -50,6 +52,7 @@
 
   <!-- =====================================================
        APLICACIÓN
+       Oculta hasta validar al usuario
        ===================================================== -->
 
   <div id="appView" class="app-shell hidden">
@@ -58,8 +61,11 @@
 
     <header class="topbar">
 
-      <a class="brand" href="/" aria-label="Top Customer Ticket Hub">
-
+      <a
+        class="brand"
+        href="/"
+        aria-label="Top Customer Ticket Hub"
+      >
         <span class="brand-mark small">
           TC
         </span>
@@ -68,7 +74,6 @@
           <strong>Top Customer</strong>
           <small>Ticket Hub</small>
         </span>
-
       </a>
 
 
@@ -121,7 +126,6 @@
       <section class="hero">
 
         <div>
-
           <p class="eyebrow">
             TOP CUSTOMER SUPPORT
           </p>
@@ -133,7 +137,6 @@
           <p id="welcomeCopy">
             Crea y consulta tus solicitudes.
           </p>
-
         </div>
 
 
@@ -148,9 +151,7 @@
       </section>
 
 
-      <!-- ===================================================
-           MÉTRICAS
-           =================================================== -->
+      <!-- MÉTRICAS -->
 
       <section
         class="metric-grid"
@@ -180,9 +181,7 @@
       </section>
 
 
-      <!-- ===================================================
-           MIS SOLICITUDES
-           =================================================== -->
+      <!-- SOLICITUDES -->
 
       <section class="panel">
 
@@ -212,7 +211,6 @@
         <div class="filters">
 
           <label class="search-field">
-
             Buscar
 
             <input
@@ -221,12 +219,10 @@
               autocomplete="off"
               placeholder="Ticket, cliente, TPID, creador..."
             >
-
           </label>
 
 
           <label>
-
             Estado
 
             <select id="statusFilter">
@@ -237,12 +233,10 @@
               <option value="Complete">Completado</option>
               <option value="Cancelled">Cancelado</option>
             </select>
-
           </label>
 
 
           <label>
-
             Prioridad
 
             <select id="priorityFilter">
@@ -252,13 +246,12 @@
               <option value="High">Alta</option>
               <option value="Critical">Crítica</option>
             </select>
-
           </label>
 
         </div>
 
 
-        <!-- ESTADO DE CARGA -->
+        <!-- CARGANDO -->
 
         <div
           id="loadingState"
@@ -282,7 +275,7 @@
         </div>
 
 
-        <!-- LISTA -->
+        <!-- LISTA DE TICKETS -->
 
         <div
           id="ticketList"
@@ -295,7 +288,7 @@
 
 
     <!-- =====================================================
-         MODAL CREAR TICKET
+         MODAL PARA CREAR TICKET
          ===================================================== -->
 
     <dialog
@@ -306,7 +299,6 @@
       <div class="modal-heading">
 
         <div>
-
           <p class="eyebrow">
             TOP CUSTOMER
           </p>
@@ -316,7 +308,6 @@
           <p>
             Completa la información necesaria para crear el ticket.
           </p>
-
         </div>
 
 
@@ -336,7 +327,6 @@
         <div class="form-grid">
 
           <label class="full">
-
             <span>Título</span>
 
             <input
@@ -345,12 +335,10 @@
               required
               placeholder="Resumen corto de la solicitud"
             >
-
           </label>
 
 
           <label>
-
             <span>Cliente / Account name</span>
 
             <input
@@ -359,12 +347,10 @@
               required
               placeholder="Nombre del cliente"
             >
-
           </label>
 
 
           <label>
-
             <span>TPID</span>
 
             <input
@@ -372,8 +358,209 @@
               maxlength="40"
               placeholder="TPID si está disponible"
             >
-
           </label>
 
 
-       
+          <label>
+            <span>Categoría</span>
+
+            <select
+              name="category"
+              required
+            >
+              <option value="">
+                Seleccionar
+              </option>
+
+              <option value="Azure">
+                Azure
+              </option>
+
+              <option value="Microsoft 365">
+                Microsoft 365
+              </option>
+
+              <option value="MSX / Opportunity">
+                MSX / Opportunity
+              </option>
+
+              <option value="Partner / Nomination">
+                Partner / Nomination
+              </option>
+
+              <option value="Billing / Support">
+                Billing / Support
+              </option>
+
+              <option value="Compliance / Security">
+                Compliance / Security
+              </option>
+
+              <option value="Other">
+                Other
+              </option>
+            </select>
+          </label>
+
+
+          <label>
+            <span>Prioridad</span>
+
+            <select
+              name="priority"
+              required
+            >
+              <option value="Low">
+            <option value="Critical">
+                Crítica
+              </option>
+            </select>
+          </label>
+
+
+          <label class="full">
+            <span>Descripción / requerimiento</span>
+
+            <textarea
+              name="description"
+              rows="7"
+              maxlength="5000"
+              required
+              placeholder="Explica detalladamente qué necesita el cliente, qué está ocurriendo y qué ayuda necesitas."
+            ></textarea>
+          </label>
+
+
+          <label class="full">
+            <span>Enlaces de evidencia</span>
+
+            <small>
+              Puedes colocar enlaces relacionados con el caso, uno por línea.
+            </small>
+
+            <textarea
+              name="evidenceLinks"
+              rows="3"
+              placeholder="https://..."
+            ></textarea>
+          </label>
+
+        </div>
+
+
+        <div class="modal-actions">
+
+          <button
+            class="button ghost close-dialog"
+            type="button"
+          >
+            Cancelar
+          </button>
+
+
+          <button
+            id="createSubmit"
+            class="button primary"
+            type="submit"
+          >
+            Crear ticket
+          </button>
+
+        </div>
+
+      </form>
+
+    </dialog>
+
+
+    <!-- =====================================================
+         DETALLE DEL TICKET
+         app.js agrega aquí el contenido
+         ===================================================== -->
+
+    <dialog
+      id="detailDialog"
+      class="modal wide-modal"
+    >
+      <div id="ticketDetail"></div>
+    </dialog>
+
+
+    <!-- =====================================================
+         NOTIFICACIONES
+         ===================================================== -->
+
+    <dialog
+      id="notificationsDialog"
+      class="modal notifications-modal"
+    >
+
+      <div class="modal-heading">
+
+        <div>
+          <p class="eyebrow">
+            TOP CUSTOMER
+          </p>
+
+          <h2>Notificaciones</h2>
+
+          <p>
+            Actualizaciones relacionadas con tus solicitudes.
+          </p>
+        </div>
+
+
+        <button
+          class="icon-button close-dialog"
+          type="button"
+          aria-label="Cerrar"
+        >
+          ✕
+        </button>
+
+      </div>
+
+
+      <div class="notification-actions">
+
+        <button
+          id="markAllReadButton"
+          class="button ghost compact"
+          type="button"
+        >
+          Marcar todas como leídas
+        </button>
+
+      </div>
+
+
+      <div
+        id="notificationList"
+        class="notification-list"
+      >
+        <div class="empty-state">
+          <strong>No tienes notificaciones.</strong>
+        </div>
+      </div>
+
+    </dialog>
+
+
+    <!-- MENSAJES -->
+
+    <div
+      id="toast"
+      class="toast"
+      role="status"
+      aria-live="polite"
+    ></div>
+
+  </div>
+
+
+  <!-- JAVASCRIPT -->
+
+  <script src="app.js"></script>
+
+</body>
+</html>
