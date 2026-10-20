@@ -2,28 +2,23 @@
   border-left: 3px solid #dbe7f2;
   padding-left: 20px;
 }
-
 .event {
   margin: 15px 0;
 }
-
 .meta {
   font-size: 12px;
   color: var(--muted);
 }
-
 table {
   width: 100%;
   border-collapse: collapse;
 }
-
 th,
 td {
   text-align: left;
   padding: 11px;
   border-bottom: 1px solid var(--line);
 }
-
 /* Notifications */
 .notification-header {
   display: flex;
@@ -31,7 +26,6 @@ td {
   align-items: center;
   gap: 10px;
 }
-
 .notification-item {
   display: block;
   width: 100%;
@@ -45,21 +39,17 @@ td {
   color: var(--text);
   font: inherit;
 }
-
 .notification-item.unread {
   background: #f5fbff;
 }
-
 .notification-item.read {
   opacity: 0.8;
 }
-
 .notification-title {
   display: flex;
   align-items: center;
   gap: 8px;
 }
-
 .unread-dot {
   width: 8px;
   height: 8px;
@@ -68,65 +58,53 @@ td {
   background: #0878d1;
   display: inline-block;
 }
-
 /* Notification colors by ticket status */
 .notification-item.Pending {
   border-left: 6px solid #f59e0b;
   background: #fffbeb;
 }
-
 .notification-item.UnderReview {
   border-left: 6px solid #2563eb;
   background: #eff6ff;
 }
-
 .notification-item.Escalated {
   border-left: 6px solid #dc2626;
   background: #fef2f2;
 }
-
 .notification-item.Complete {
   border-left: 6px solid #16a34a;
   background: #ecfdf5;
 }
-
 .notification-item.Cancelled {
   border-left: 6px solid #6b7280;
   background: #f9fafb;
 }
-
 /* Expert Meeting */
 .ExpertMeeting {
   background: #ede9fe;
   color: #5b21b6;
   font-weight: 700;
 }
-
 /* KPI morado de Expert Meetings */
 .ExpertMeetingCard {
   border-left: 6px solid #7c3aed;
   background: #f5f3ff;
 }
-
 /* Tabla adaptable */
 #list {
   overflow-x: auto;
 }
-
 #list table button {
   white-space: nowrap;
 }
-
 /* Admin stats cards */
 .stat {
   transition: all .2s ease;
 }
-
 .stat:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 18px rgba(0, 0, 0, .08);
 }
-
 /* Notification badge */
 .notification-count {
   background: #dc2626;
@@ -141,22 +119,18 @@ td {
   font-weight: 700;
   margin-left: 4px;
 }
-
 @media (max-width: 700px) {
   .grid,
   .stats {
     grid-template-columns: 1fr;
   }
-
   .full {
     grid-column: auto;
   }
-
   header {
     align-items: flex-start;
     flex-direction: column;
   }
-
   .toolbar {
     flex-direction: column;
   }
